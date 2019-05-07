@@ -1,0 +1,110 @@
+{
+    "type": "object",
+    "properties": {
+        "profileName": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "overrides": {
+                    "description": "A subfield of <code>platform</code>. This specifies any different configuration options that you want to apply to the chosen platform (such as a different <code>hash-algorithm</code> or <code>signing-algorithm</code>).",
+                    "properties": {
+                        "signingConfiguration": {
+                            "description": "A signing configuration that overrides the default encryption or hash algorithm of a signing job.",
+                            "properties": {
+                                "encryptionAlgorithm": {
+                                    "description": "A specified override of the default encryption algorithm that is used in an AWS Signer job.",
+                                    "enum": [
+                                        "RSA",
+                                        "ECDSA"
+                                    ],
+                                    "type": "string"
+                                },
+                                "hashAlgorithm": {
+                                    "description": "A specified override of the default hash algorithm that is used in an AWS Signer job.",
+                                    "enum": [
+                                        "SHA1",
+                                        "SHA256"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "platformId": {
+                    "description": "The ID of the signing profile to be created.",
+                    "type": "string"
+                },
+                "signingMaterial": {
+                    "description": "The AWS Certificate Manager certificate that will be used to sign code with the new signing profile.",
+                    "properties": {
+                        "certificateArn": {
+                            "description": "The Amazon Resource Name (ARN) of the certificates that is used to sign your code.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "certificateArn"
+                    ],
+                    "type": "object"
+                },
+                "signingParameters": {
+                    "description": "Map of key-value pairs for signing. These can include any information that you want to use during signing.",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "signingMaterial",
+                "platformId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

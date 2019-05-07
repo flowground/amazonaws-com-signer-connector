@@ -1,0 +1,111 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "clientRequestToken": {
+                    "description": "String that identifies the signing request. All calls after the first that use this token return the same response as the first call.",
+                    "type": "string"
+                },
+                "destination": {
+                    "description": "The S3 bucket in which to save your signed object. The destination contains the name of your bucket and an optional prefix.",
+                    "properties": {
+                        "s3": {
+                            "description": "The <code>S3Destination</code> object.",
+                            "properties": {
+                                "bucketName": {
+                                    "description": "Name of the S3 bucket.",
+                                    "type": "string"
+                                },
+                                "prefix": {
+                                    "description": "An Amazon S3 prefix that you can use to limit responses to those that begin with the specified prefix.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "profileName": {
+                    "description": "The name of the signing profile.",
+                    "maxLength": 20,
+                    "minLength": 2,
+                    "pattern": "^[a-zA-Z0-9_]{2,}",
+                    "type": "string"
+                },
+                "source": {
+                    "description": "The S3 bucket that contains the object to sign or a BLOB that contains your raw code.",
+                    "properties": {
+                        "s3": {
+                            "description": "The <code>S3Source</code> object.",
+                            "properties": {
+                                "bucketName": {
+                                    "description": "Name of the S3 bucket.",
+                                    "type": "string"
+                                },
+                                "key": {
+                                    "description": "Key name of the bucket object that contains your unsigned code.",
+                                    "type": "string"
+                                },
+                                "version": {
+                                    "description": "Version of your source image in your version enabled S3 bucket.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "bucketName",
+                                "key",
+                                "version"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "source",
+                "destination",
+                "clientRequestToken"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
