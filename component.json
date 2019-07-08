@@ -20,7 +20,7 @@
                 "label": "Custom Server URL",
                 "viewClass": "TextFieldView"
             },
-            "hmac": {
+            "auth_hmac": {
                 "label": "Authorization (hmac)",
                 "viewClass": "TextFieldView",
                 "note": "Amazon Signature authorization v4"
@@ -38,7 +38,7 @@
     "actions": {
         "ListSigningJobs": {
             "main": "./lib/actions/ListSigningJobs.js",
-            "title": "Lists all your signing jobs. You can use the <code>maxResults</code> parameter to limit the number of signing jobs that are returned in the response. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned. ",
+            "title": "ListSigningJobs",
             "description": "Lists all your signing jobs. You can use the <code>maxResults</code> parameter to limit the number of signing jobs that are returned in the response. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned. ",
             "fields": {
                 "verbose": {
@@ -55,8 +55,8 @@
         },
         "StartSigningJob": {
             "main": "./lib/actions/StartSigningJob.js",
-            "title": "<p>Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the <code>ListSigningJobs</code> operation for two years after they are performed. Note the following requirements: </p> <ul> <li> <p> You must create an Amazon S3 source bucket. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html\">Create a Bucket</a> in the <i>Amazon S3 Getting Started Guide</i>. </p> </li> <li> <p>Your S3 source bucket must be version enabled.</p> </li> <li> <p>You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket to write your signed code.</p> </li> <li> <p>You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code> operation.</p> </li> <li> <p>You must also specify a request token that identifies your request to AWS Signer. </p> </li> </ul> <p>You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions after you call <code>StartSigningJob</code>.</p> <p>For a Java example that shows how to use this action, see <a href=\"http://docs.aws.amazon.com/acm/latest/userguide/\">http://docs.aws.amazon.com/acm/latest/userguide/</a> </p>",
-            "description": "<p>Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the <code>ListSigningJobs</code> operation for two years after they are performed. Note the following requirements: </p> <ul> <li> <p> You must create an Amazon S3 source bucket. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html\">Create a Bucket</a> in the <i>Amazon S3 Getting Started Guide</i>. </p> </li> <li> <p>Your S3 source bucket must be version enabled.</p> </li> <li> <p>You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket to write your signed code.</p> </li> <li> <p>You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code> operation.</p> </li> <li> <p>You must also specify a request token that identifies your request to AWS Signer. </p> </li> </ul> <p>You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions after you call <code>StartSigningJob</code>.</p> <p>For a Java example that shows how to use this action, see <a href=\"http://docs.aws.amazon.com/acm/latest/userguide/\">http://docs.aws.amazon.com/acm/latest/userguide/</a> </p>",
+            "title": "StartSigningJob",
+            "description": "Initiates a signing job to be performed on the code provided. Signing jobs are\nviewable by the ListSigningJobs operation for two years after they are\nperformed. Note the following requirements: \n\n *   You must create an Amazon S3 source bucket. For more information, see Create\n   a Bucket\n   [http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html] in the \n   Amazon S3 Getting Started Guide. \n   \n   \n *  Your S3 source bucket must be version enabled.\n   \n   \n *  You must create an S3 destination bucket. AWS Signer uses your S3\n   destination bucket to write your signed code.\n   \n   \n *  You specify the name of the source and destination buckets when calling the \n   StartSigningJob operation.\n   \n   \n *  You must also specify a request token that identifies your request to AWS\n   Signer. \n   \n   \n\nYou can call the DescribeSigningJob and the ListSigningJobs actions after you\ncall StartSigningJob.\n\nFor a Java example that shows how to use this action, see \nhttp://docs.aws.amazon.com/acm/latest/userguide/\n[http://docs.aws.amazon.com/acm/latest/userguide/]",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -72,7 +72,7 @@
         },
         "DescribeSigningJob": {
             "main": "./lib/actions/DescribeSigningJob.js",
-            "title": "Returns information about a specific code signing job. You specify the job by using the <code>jobId</code> value that is returned by the <a>StartSigningJob</a> operation. ",
+            "title": "DescribeSigningJob",
             "description": "Returns information about a specific code signing job. You specify the job by using the <code>jobId</code> value that is returned by the <a>StartSigningJob</a> operation. ",
             "fields": {
                 "verbose": {
@@ -89,7 +89,7 @@
         },
         "ListSigningPlatforms": {
             "main": "./lib/actions/ListSigningPlatforms.js",
-            "title": "Lists all signing platforms available in AWS Signer that match the request parameters. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned.",
+            "title": "ListSigningPlatforms",
             "description": "Lists all signing platforms available in AWS Signer that match the request parameters. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned.",
             "fields": {
                 "verbose": {
@@ -106,7 +106,7 @@
         },
         "GetSigningPlatform": {
             "main": "./lib/actions/GetSigningPlatform.js",
-            "title": "Returns information on a specific signing platform.",
+            "title": "GetSigningPlatform",
             "description": "Returns information on a specific signing platform.",
             "fields": {
                 "verbose": {
@@ -123,7 +123,7 @@
         },
         "ListSigningProfiles": {
             "main": "./lib/actions/ListSigningProfiles.js",
-            "title": "Lists all available signing profiles in your AWS account. Returns only profiles with an <code>ACTIVE</code> status unless the <code>includeCanceled</code> request field is set to <code>true</code>. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned.",
+            "title": "ListSigningProfiles",
             "description": "Lists all available signing profiles in your AWS account. Returns only profiles with an <code>ACTIVE</code> status unless the <code>includeCanceled</code> request field is set to <code>true</code>. If additional jobs remain to be listed, AWS Signer returns a <code>nextToken</code> value. Use this value in subsequent calls to <code>ListSigningJobs</code> to fetch the remaining values. You can continue calling <code>ListSigningJobs</code> with your <code>maxResults</code> parameter and with new values that AWS Signer returns in the <code>nextToken</code> parameter until all of your signing jobs have been returned.",
             "fields": {
                 "verbose": {
@@ -140,7 +140,7 @@
         },
         "CancelSigningProfile": {
             "main": "./lib/actions/CancelSigningProfile.js",
-            "title": "Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>. A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation, but it cannot perform new signing jobs, and is deleted two years after cancelation.",
+            "title": "CancelSigningProfile",
             "description": "Changes the state of an <code>ACTIVE</code> signing profile to <code>CANCELED</code>. A canceled profile is still viewable with the <code>ListSigningProfiles</code> operation, but it cannot perform new signing jobs, and is deleted two years after cancelation.",
             "fields": {
                 "verbose": {
@@ -157,7 +157,7 @@
         },
         "GetSigningProfile": {
             "main": "./lib/actions/GetSigningProfile.js",
-            "title": "Returns information on a specific signing profile.",
+            "title": "GetSigningProfile",
             "description": "Returns information on a specific signing profile.",
             "fields": {
                 "verbose": {
@@ -174,7 +174,7 @@
         },
         "PutSigningProfile": {
             "main": "./lib/actions/PutSigningProfile.js",
-            "title": "Creates a signing profile. A signing profile is an AWS Signer template that can be used to carry out a pre-defined signing job. For more information, see <a href=\"http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html\">http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html</a> ",
+            "title": "PutSigningProfile",
             "description": "Creates a signing profile. A signing profile is an AWS Signer template that can be used to carry out a pre-defined signing job. For more information, see <a href=\"http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html\">http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html</a> ",
             "fields": {
                 "verbose": {
